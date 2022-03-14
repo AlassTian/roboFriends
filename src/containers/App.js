@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import "./App.css";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
+import SearchBox from "../components/ErrorBoundry";
 import Scroll from "../components/Scroll";
-
-const isSearched = searchTerm => item =>
-    item.title.toLowerCase().includes(this.state.searchField.toLowerCase());
 
 class App extends Component {
     constructor(props) {
@@ -38,7 +36,9 @@ class App extends Component {
                     <h1 className="f1">RoboFriends</h1>
                     <SearchBox searchChange={this.onSearchChange} />
                     <Scroll>
-                        <CardList robots={filteredRobots} />
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots} />
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             )
